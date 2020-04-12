@@ -2,6 +2,7 @@ package com.example.hopeshop.controller.user;
 
 import com.example.hopeshop.model.Category;
 import com.example.hopeshop.model.Product;
+import com.example.hopeshop.service.CategoryService;
 import com.example.hopeshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,20 @@ import java.util.Map;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     //API trả về List Product.
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public ResponseEntity<List<Product>> listAllProducts() {
         List<Product> products = productService.findAll();
         if (products.isEmpty()) {
-            return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            Category category = new Category("SmartPhone");
+            categoryService.save(category);
+            Product product = new Product(1, "iPhone XS", 15000000, "", "256GB", category);
+            productService.save(product);
+            products = productService.findAll();
+            return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
         }
         return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
     }
