@@ -61,8 +61,12 @@ public class AdminLoginController {
         String email = map.get("email");
         String avatar = map.get("avatar");
         int roleId = 1;
-
-        User user = service.login(username, password);
+        User user = null;
+        try {
+            user = service.login(username, password);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (user != null) {
             return new ResponseEntity<User>(HttpStatus.CONFLICT);
         }
