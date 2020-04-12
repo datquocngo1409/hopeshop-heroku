@@ -66,7 +66,7 @@ public class AdminLoginController {
         if (user != null) {
             return new ResponseEntity<User>(HttpStatus.CONFLICT);
         }
-        user = new User(username, password, email, avatar, roleId);
+        user = new User(id, username, password, email, avatar, roleId);
         service.save(user);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
