@@ -52,6 +52,10 @@ public class AdminLoginController {
             return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
         }
 
+        int id = Integer.parseInt(map.get("id"));
+        if (service.findById(id) != null) {
+            return new ResponseEntity<User>(HttpStatus.CONFLICT);
+        }
         String username = map.get("username");
         String password = map.get("password");
         String email = map.get("email");
