@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Table(name = "tbl_Cart")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

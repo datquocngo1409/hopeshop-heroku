@@ -3,6 +3,7 @@ package com.example.hopeshop.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tbl_Product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "tbl_User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
