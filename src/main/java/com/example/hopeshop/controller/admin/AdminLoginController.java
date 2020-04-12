@@ -51,26 +51,16 @@ public class AdminLoginController {
         if (!adminKey.equalsIgnoreCase("admin")) {
             return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
         }
-
-        int id = Integer.parseInt(map.get("id"));
-        if (service.findById(id) != null) {
-            return new ResponseEntity<User>(HttpStatus.CONFLICT);
-        }
         String username = map.get("username");
         String password = map.get("password");
         String email = map.get("email");
         String avatar = map.get("avatar");
         int roleId = 1;
-        User user = null;
-        try {
-            user = service.login(username, password);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        User user = service.login(username, password);
         if (user != null) {
             return new ResponseEntity<User>(HttpStatus.CONFLICT);
         }
-        user = new User(id, username, password, email, avatar, roleId);
+        user = new User(username, password, email, avatar, roleId);
         service.save(user);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
