@@ -47,9 +47,9 @@ public class ProductController {
         return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/productByCategory/{categoryId}", method = RequestMethod.GET)
-    public ResponseEntity<List<Product>> productByCategory(@PathVariable("categoryId") int categoryId) {
-        Category category = categoryService.findById(categoryId);
+    @RequestMapping(value = "/productByCategory/{categoryName}", method = RequestMethod.GET)
+    public ResponseEntity<List<Product>> productByCategory(@PathVariable("categoryName") String categoryName) {
+        Category category = categoryService.findByName(categoryName);
         List<Product> products = productService.findAllByCategory(category);
         if (products.isEmpty()) {
             return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
