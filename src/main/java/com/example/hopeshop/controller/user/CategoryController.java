@@ -33,12 +33,13 @@ public class CategoryController {
     }
 
     //API trả về Category có ID trên url.
-    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Category> getCategoryById(@PathVariable("id") int id) {
-        System.out.println("Fetching Category with id " + id);
-        Category account = categoryService.findById(id);
+    @RequestMapping(value = "/category/{categoryName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Category> getCategoryById(@PathVariable("categoryName") String categoryName) {
+        Category category = categoryService.findByName(categoryName);
+        System.out.println("Fetching Category with id " + category.getId());
+        Category account = categoryService.findById(category.getId());
         if (account == null) {
-            System.out.println("Category with id " + id + " not found");
+            System.out.println("Category with id " + category.getId() + " not found");
             return new ResponseEntity<Category>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Category>(account, HttpStatus.OK);
