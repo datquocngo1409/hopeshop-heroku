@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +43,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> productByName(@PathVariable("productName") String name) {
         List<Product> products = productService.findAllByNameIsContaining(name);
         if (products.isEmpty()) {
-            return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            products = new ArrayList<>();
         }
         return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
     }
@@ -52,7 +53,7 @@ public class ProductController {
         Category category = categoryService.findByName(categoryName);
         List<Product> products = productService.findAllByCategory(category);
         if (products.isEmpty()) {
-            return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            products = new ArrayList<>();
         }
         return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
     }
