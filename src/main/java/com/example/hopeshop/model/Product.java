@@ -12,15 +12,19 @@ public class Product {
     private long price;
     private String image;
     private String des;
+    private String miniDetail;
+    private String superDetail;
     @ManyToOne
     private Category category;//cate_id
+    @ManyToOne
+    private Brand brand;
 
 
     public Product() {
         super();
     }
 
-    public Product(int id, String name, long price, String image, String des, Category category) {
+    public Product(int id, String name, long price, String image, String des, String miniDetail, String superDetail, Category category, Brand brand) {
         super();
         this.id = id;
         this.name = name;
@@ -28,6 +32,9 @@ public class Product {
         this.image = image;
         this.des = des;
         this.category = category;
+        this.brand = brand;
+        this.miniDetail = miniDetail;
+        this.superDetail = superDetail;
     }
 
     public int getId() {
@@ -78,4 +85,27 @@ public class Product {
         this.category = category;
     }
 
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public String getMiniDetail() {
+        return miniDetail;
+    }
+
+    public void setMiniDetail(String miniDetail) {
+        this.miniDetail = miniDetail;
+    }
+
+    public String getSuperDetail() {
+        return superDetail;
+    }
+
+    public void setSuperDetail(String superDetail) {
+        this.superDetail = superDetail;
+    }
 }

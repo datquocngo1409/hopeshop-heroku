@@ -1,5 +1,6 @@
 package com.example.hopeshop.service;
 
+import com.example.hopeshop.model.Brand;
 import com.example.hopeshop.model.Category;
 import com.example.hopeshop.model.Product;
 import com.example.hopeshop.repository.ProductRepository;
@@ -35,5 +36,9 @@ public class ProductService {
 
     public List<Product> findAllByCategory(Category category) {
         return productRepository.findAllByCategory(category);
+    }
+
+    public List<Product> findAllByBrandAndCategory(Brand brand, Category category) {
+        return productRepository.findAllByBrandAndCategory(brand, category);
     }
 }

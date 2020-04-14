@@ -1,5 +1,6 @@
 package com.example.hopeshop.repository;
 
+import com.example.hopeshop.model.Brand;
 import com.example.hopeshop.model.Category;
 import com.example.hopeshop.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findAllByNameIsContaining(String name);
     List<Product> findAllByCategory(Category category);
+    List<Product> findAllByBrandAndCategory(Brand brand, Category category);
 }
