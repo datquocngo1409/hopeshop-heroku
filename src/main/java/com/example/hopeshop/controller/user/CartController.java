@@ -69,7 +69,7 @@ public class CartController {
         Object obj = httpSession.getAttribute("cart");
         Map<Integer, CartItem> cartItemMap = new HashMap<Integer, CartItem>();
         if (obj == null) {
-            return new ResponseEntity<List<CartItem>>(HttpStatus.NO_CONTENT);
+            List<CartItem> cartItemList = new ArrayList();
         } else {
             cartItemMap = (Map<Integer, CartItem>) obj;
             List<CartItem> cartItemList = new ArrayList<CartItem>(cartItemMap.values());
