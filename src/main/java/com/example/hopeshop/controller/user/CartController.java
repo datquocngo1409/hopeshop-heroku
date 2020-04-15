@@ -70,6 +70,7 @@ public class CartController {
         Map<Integer, CartItem> cartItemMap = new HashMap<Integer, CartItem>();
         if (obj == null) {
             List<CartItem> cartItemList = new ArrayList();
+            return new ResponseEntity<List<CartItem>>(cartItemList, HttpStatus.OK);
         } else {
             cartItemMap = (Map<Integer, CartItem>) obj;
             List<CartItem> cartItemList = new ArrayList<CartItem>(cartItemMap.values());
