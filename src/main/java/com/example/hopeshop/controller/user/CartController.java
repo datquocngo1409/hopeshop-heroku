@@ -63,7 +63,7 @@ public class CartController {
         return new ResponseEntity<List<CartItem>>(cartItemList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     public ResponseEntity<List<CartItem>> getCart(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession httpSession = req.getSession();
         Object obj = httpSession.getAttribute("cart");
@@ -71,6 +71,7 @@ public class CartController {
         if (obj == null) {
             return new ResponseEntity<List<CartItem>>(HttpStatus.NO_CONTENT);
         } else {
+            cartItemMap = (Map<Integer, CartItem>) obj;
             List<CartItem> cartItemList = new ArrayList<CartItem>(cartItemMap.values());
             return new ResponseEntity<List<CartItem>>(cartItemList, HttpStatus.OK);
         }
